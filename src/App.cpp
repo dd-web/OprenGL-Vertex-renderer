@@ -207,11 +207,11 @@ int main(void)
             GLCall(glUseProgram(shader));
             GLCall(glUniform4f(location, r, 0.3f, 0.8f, 1.0f));
 
-          
             va.Bind();
             ib.Bind();
 
             GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+
 
             if (r > 1.0f)
                 increment = -0.05f;
@@ -219,7 +219,6 @@ int main(void)
                 increment = 0.05f;
 
             r += increment;
-
 
             /* Swap front and back buffers */
             glfwSwapBuffers(window);
