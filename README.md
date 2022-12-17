@@ -1,1 +1,1 @@
-# GLGame
+OpenGL Vertex Buffer handler & renderer 
