@@ -13,6 +13,23 @@
 #include "VertexArray.h"
 #include "Shader.h"
 
+void UpdateRGB(float& R, float& G, float& IG, float& IR)
+{
+    if (G > 1.0f)
+        IG = -0.02f;
+    else if (G < 0.0f)
+        IG = 0.03f;
+
+    G += IG;
+
+    if (R > 1.0f)
+        IR = -0.05f;
+    else if (R < 0.0f)
+        IR = 0.05f;
+
+    R += IR;
+}
+
 
 int main(void)
 {
@@ -82,39 +99,22 @@ int main(void)
 
 
         float r = 0.0f;
+        float i_r = 0.05f;
         float g = 0.4f;
-        float increment = 0.05f;
-        float incrementA = 0.01f;
+        float i_g = 0.01f;
 
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {
-            /* Render here */
-            GLCall(glClear(GL_COLOR_BUFFER_BIT));
-
+            renderer.Clear();
+            
             shader.Bind();
             shader.SetUniform4f("u_Color", r, g, 0.4f, 1.0f);
 
             renderer.Draw(va, ib, shader);
 
-            va.Bind();
-            ib.Bind();
 
-            GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
-
-            if (g > 1.0f)
-                incrementA = -0.02f;
-            else if (g < 0.0f)
-                incrementA = 0.03f;
-
-            g += incrementA;
-
-            if (r > 1.0f)
-                increment = -0.05f;
-            else if (r < 0.0f)
-                increment = 0.05f;
-
-            r += increment;
+            UpdateRGB(r, g, i_g, i_r); // add some color to make it more interesting
 
             /* Swap front and back buffers && Poll for and process events  */
             glfwSwapBuffers(window);
