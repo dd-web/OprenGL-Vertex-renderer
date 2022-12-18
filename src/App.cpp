@@ -14,6 +14,9 @@
 #include "Shader.h"
 #include "Texture.h"
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 void UpdateRGB(float& R, float& G, float& IG, float& IR)
 {
     if (G > 1.0f)
@@ -34,6 +37,9 @@ void UpdateRGB(float& R, float& G, float& IG, float& IR)
 
 int main(void)
 {
+
+    float w_Width = 960, w_Height = 540;
+
     GLFWwindow* window;
 
     /* Initialize GLFW & set version + params */
@@ -46,12 +52,13 @@ int main(void)
 
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "OpenGL Render Window", NULL, NULL);
+    window = glfwCreateWindow(960, 540, "OpenGL Render Window", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
         return -1;
     }
+
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
@@ -65,12 +72,12 @@ int main(void)
     Print(glGetString(GL_VERSION));
 
     {
-        /* initialize some verticies to use */
+
         float positions[] = {
-            -0.5f,  -0.5f,   0.0f,   0.0f,
-             0.5f,  -0.5f,   1.0f,   0.0f,
-             0.5f,   0.5f,   1.0f,   1.0f,
-            -0.5f,   0.5f,   0.0f,   1.0f
+            100.0f,   100.0f,   0.0f,   0.0f,
+            200.0f,   100.0f,   1.0f,   0.0f,
+            200.0f,   200.0f,   1.0f,   1.0f,
+            100.0f,   200.0f,   0.0f,   1.0f
         };
 
         uint32_t indices[] = {
@@ -91,9 +98,12 @@ int main(void)
  
         IndexBuffer ib(indices, 6);
 
+        glm::mat4 proj = glm::ortho(0.0f, w_Width, 0.0f, w_Height, -1.0f, 1.0f); // 4/3 aspect ratio
+
         Shader shader("res/shaders/Basic.shader");
         shader.Bind();
         shader.SetUniform4f("u_Color", 0.9f, 0.3f, 0.4f, 0.7f);
+        shader.SetUniformMat4f("u_MVP", proj);
 
         Texture texture("res/textures/cool.png");
         texture.Bind();
