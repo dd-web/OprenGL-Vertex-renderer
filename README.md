@@ -18,7 +18,11 @@ to open up an issue for anything else. it's not very complex or anything, it ren
 color can be controlled through shader uniforms
 
 
----
+for more OpenGL resources check out these [opengl docs](https://docs.gl/) or the [glew docs](https://www.glfw.org/) which also has dlls available
+if you'd rather include it that way.
+
+
+
 ## GPU calls & frame states
 
 constructors & state manipulation should be called **outside** of the frame render loop.
@@ -72,13 +76,16 @@ but above the `glfwSwapBuffers` or any other destructor methods.
 ```
 ## Shaders
 
+### `Todo. will update readme later with more info.`
+
+
+
+
 place your shader program in the `res/shaders/` directory and name it `Basic.shader`.
 
 each shader program should contain a `position` shader and `fragment` shader. these are defined
 with the `#shader <type>` token to parse and compile them so they can be bound to the vertex buffer.
 
 
----
 
-[OpenGL]: https://docs.gl/
-[GLFW]: https://www.glfw.org/
+
