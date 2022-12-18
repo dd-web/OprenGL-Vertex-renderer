@@ -1,5 +1,7 @@
 # OpenGL Vertex Buffer Renderer
 
+![image](https://user-images.githubusercontent.com/63762367/208301983-565a4faf-e8e3-42c5-bfcb-21fdbea11d05.png)
+
 by *David Duncan*
 
 ```
