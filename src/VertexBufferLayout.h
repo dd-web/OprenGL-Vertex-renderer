@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <GL/glew.h>
 #include "Renderer.h"
 
 struct VertexBufferElement
@@ -37,7 +36,7 @@ public:
 	void Push(unsigned int count, T type, bool normalize)
 	{
 		m_Elements.push_back({ (unsigned int)type, count, (unsigned char)normalize });
-		m_Stride += count * VertexBufferElement::GetSizeOfType(type);
+		m_Stride += count * VertexBufferElement::GetSizeOfType((unsigned int)type);
 	}
 
 	inline const std::vector<VertexBufferElement> GetElements() const& { return m_Elements; };

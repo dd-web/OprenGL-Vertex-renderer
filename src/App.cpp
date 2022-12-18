@@ -8,6 +8,7 @@
 #include "Renderer.h"
 
 #include "VertexBuffer.h"
+#include "VertexBufferLayout.h"
 #include "IndexBuffer.h"
 #include "VertexArray.h"
 #include "Shader.h"
@@ -77,6 +78,8 @@ int main(void)
         ib.Unbind();
         shader.Unbind();
 
+        Renderer renderer;
+
 
         float r = 0.0f;
         float g = 0.4f;
@@ -91,6 +94,8 @@ int main(void)
 
             shader.Bind();
             shader.SetUniform4f("u_Color", r, g, 0.4f, 1.0f);
+
+            renderer.Draw(va, ib, shader);
 
             va.Bind();
             ib.Bind();
