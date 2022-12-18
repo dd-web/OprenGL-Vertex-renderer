@@ -43,7 +43,7 @@ int main(void)
         return -1;
     }
 
-    Print(glGetString(GL_VERSION)); // if we have a window, log our version
+    Print(glGetString(GL_VERSION));
 
     {
         /* initialize some verticies to use */
