@@ -12,6 +12,7 @@
 #include "IndexBuffer.h"
 #include "VertexArray.h"
 #include "Shader.h"
+#include "Texture.h"
 
 void UpdateRGB(float& R, float& G, float& IG, float& IR)
 {
@@ -66,10 +67,10 @@ int main(void)
     {
         /* initialize some verticies to use */
         float positions[] = {
-            -0.5f,  -0.5f,  
-             0.5f,  -0.5f,  
-             0.5f,   0.5f,  
-            -0.5f,   0.5f
+            -0.5f,  -0.5f,   0.0f,   0.0f,
+             0.5f,  -0.5f,   1.0f,   0.0f,
+             0.5f,   0.5f,   1.0f,   1.0f,
+            -0.5f,   0.5f,   0.0f,   1.0f
         };
 
         uint32_t indices[] = {
@@ -77,10 +78,14 @@ int main(void)
                 2, 3, 0
         };
 
+        GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+        GLCall(glEnable(GL_BLEND));
+
         VertexArray va;
-        VertexBuffer vb(positions, 4 * 2 * sizeof(float));
+        VertexBuffer vb(positions, 4 * 4 * sizeof(float));
  
         VertexBufferLayout layout;
+        layout.Push<float>(2, GL_FLOAT, false);
         layout.Push<float>(2, GL_FLOAT, false);
         va.AddBuffer(vb, layout);
  
@@ -90,13 +95,16 @@ int main(void)
         shader.Bind();
         shader.SetUniform4f("u_Color", 0.9f, 0.3f, 0.4f, 0.7f);
 
+        Texture texture("res/textures/cool.png");
+        texture.Bind();
+        shader.SetUniform1i("u_Texture", 0);
+
         va.Unbind();
         vb.Unbind();
         ib.Unbind();
         shader.Unbind();
 
         Renderer renderer;
-
 
         float r = 0.0f;
         float i_r = 0.05f;
