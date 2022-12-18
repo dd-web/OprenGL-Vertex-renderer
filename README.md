@@ -5,7 +5,7 @@
 by *David Duncan*
 
 ```
-an extremely simple, bare-bones OpenGL vertex renderer & shader program compiler 
+you've got verticies, it's got direct gpu calls
 ```
 
 
