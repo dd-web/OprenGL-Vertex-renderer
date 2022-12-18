@@ -2,12 +2,7 @@
 
 ![image](https://user-images.githubusercontent.com/63762367/208301983-565a4faf-e8e3-42c5-bfcb-21fdbea11d05.png)
 
-by *David Duncan*
-
-```
-you've got verticies, it's got direct gpu calls
-```
-
+it's at a pretty nice spot for starting new projects without having to do a ton of work, without any real application specific operations
 
 ## About
 
