@@ -2,7 +2,6 @@
 
 _Note_ planned some pretty big api change, readme updates when it's closer to something easier to use
 
-![image](https://user-images.githubusercontent.com/63762367/208301983-565a4faf-e8e3-42c5-bfcb-21fdbea11d05.png)
 
 it's at a pretty nice spot for starting new projects without having to do a ton of work, without any real application specific operations
 
