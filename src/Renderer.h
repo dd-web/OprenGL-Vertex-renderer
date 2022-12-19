@@ -23,4 +23,6 @@ public:
     void Clear() const;
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
 
+private:
+    float m_ClearColor[4]{0.02f, 0.26f, 0.32f, 1.0f};
 };
