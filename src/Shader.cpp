@@ -70,8 +70,9 @@ void Shader::PrintShaderSource(const std::string& vertex, const std::string& fra
 
 unsigned int Shader::CompileShader(unsigned int type, const std::string& source)
 {
-    GLCall(unsigned int id = glCreateShader(type));
+    GLCall(uint32_t id = glCreateShader(type));
     const char* src = source.c_str();
+    //(GLuint shader, GLsizei count, const GLchar* const* string, const GLint * length);
     GLCall(glShaderSource(id, 1, &src, nullptr));
     GLCall(glCompileShader(id));
 
@@ -81,7 +82,8 @@ unsigned int Shader::CompileShader(unsigned int type, const std::string& source)
     {
         int length;
         GLCall(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
-        char* message = (char*)alloca(length * sizeof(char));
+        //char* message = (char*)alloca(length * sizeof(char));
+        char* message = (char*)_malloca(length * sizeof(char));
         GLCall(glGetShaderInfoLog(id, length, &length, message));
 
         std::string shadType = (type == GL_VERTEX_SHADER ? "vertex" : "fragment");

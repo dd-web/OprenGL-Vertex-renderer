@@ -8,13 +8,13 @@
 #include "Shader.h"
 
 
-/* Clears errors from the previous frame */
+
 void GLClearError()
 {
     while (glGetError() != GL_NO_ERROR);
 }
 
-/* Sets a breakpoint on exception and logs details about it */
+
 bool GLLogCall(const char* function, const char* file, int line)
 {
     while (GLenum error = glGetError())
@@ -36,7 +36,7 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
     shader.Bind();
     va.Bind();
     ib.Bind();
-    //GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
+
     GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 
 }
