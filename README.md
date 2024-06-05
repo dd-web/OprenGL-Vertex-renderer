@@ -1,3 +1,1 @@
-# OpenGL Renderer
-
-personal project am using to learn opengl
+this is a very old project I used to learn opengl.
